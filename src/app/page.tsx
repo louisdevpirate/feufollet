@@ -13,7 +13,7 @@ import { ArrowRight, Star, Users, Award, Palette, Zap, Users2 } from 'lucide-rea
 
 export default function Home() {
   const { currentUniverse } = useTheme();
-  const currentUniverseData = UNIVERSES[currentUniverse];
+  const currentUniverseData = UNIVERSES[currentUniverse] || UNIVERSES.tatouage;
 
   const features = [
     {
