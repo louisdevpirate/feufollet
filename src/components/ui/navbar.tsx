@@ -61,7 +61,7 @@ export function Navbar() {
                   className="flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 hover:bg-gray-100"
                   style={{
                     backgroundColor: isActive ? `${theme.primary}20` : 'transparent',
-                    color: isActive ? theme.primary : scrolled ? '#374151' : 'white',
+                    color: isActive ? theme.primary : scrolled ? '#374151' : '#000000',
                   }}
                 >
                   <Icon className="w-4 h-4" />
@@ -75,7 +75,7 @@ export function Navbar() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden p-2 rounded-lg transition-colors"
-            style={{ color: scrolled ? theme.primary : 'white' }}
+            style={{ color: scrolled ? theme.primary : '#000000' }}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

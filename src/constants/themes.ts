@@ -7,7 +7,7 @@ export const THEMES: Record<string, ThemeConfig> = {
     accent: '#ffffff', // Blanc
     background: '#ffffff', // Blanc pur
     text: '#000000', // Noir
-    gradient: 'from-black via-gray-900 to-black',
+    gradient: 'from-white to-white',
     // Style Comic Noir/Ink
     ctaPrimary: 'bg-black text-white hover:bg-gray-900',
     ctaSecondary: 'border-2 border-black text-black hover:bg-black hover:text-white',
