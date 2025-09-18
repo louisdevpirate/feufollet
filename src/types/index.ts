@@ -66,4 +66,9 @@ export interface ThemeConfig {
   background: string;
   text: string;
   gradient: string;
+  ctaPrimary?: string;
+  ctaSecondary?: string;
+  cardStyle?: string;
+  textStyle?: string;
+  backgroundStyle?: string;
 }

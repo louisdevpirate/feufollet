@@ -5,17 +5,17 @@ import { THEMES } from '@/constants/themes';
 import { ThemeConfig, Universe } from '@/types';
 
 interface ThemeContextType {
-  currentUniverse: Universe;
+  currentUniverse: string;
   theme: ThemeConfig;
-  setUniverse: (universe: Universe) => void;
+  setUniverse: (universe: string) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [currentUniverse, setCurrentUniverse] = useState<Universe>('tatouage');
+  const [currentUniverse, setCurrentUniverse] = useState<string>('');
 
-  const setUniverse = (universe: Universe) => {
+  const setUniverse = (universe: string) => {
     setCurrentUniverse(universe);
     // Sauvegarder dans localStorage
     localStorage.setItem('currentUniverse', universe);
@@ -23,13 +23,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Charger depuis localStorage
-    const saved = localStorage.getItem('currentUniverse') as Universe;
+    const saved = localStorage.getItem('currentUniverse');
     if (saved && THEMES[saved]) {
       setCurrentUniverse(saved);
     }
   }, []);
 
-  const theme = THEMES[currentUniverse];
+  const theme = currentUniverse ? THEMES[currentUniverse] : THEMES.tatouage;
 
   return (
     <ThemeContext.Provider value={{ currentUniverse, theme, setUniverse }}>

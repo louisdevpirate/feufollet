@@ -1,18 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Navbar } from '@/components/ui/navbar';
 import { Footer } from '@/components/ui/footer';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { ThemedButton } from '@/components/ui/themed-button';
 import { useTheme } from '@/components/ui/theme-provider';
-import { Zap, Palette, Clock, MapPin, Euro, ArrowRight, Star, CheckCircle } from 'lucide-react';
+import { Zap, Palette, Clock, MapPin, Euro, ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function TattooPage() {
-  const { theme } = useTheme();
+  const { theme, setUniverse } = useTheme();
   const [activeTab, setActiveTab] = useState<'gallery' | 'booking'>('gallery');
+
+  // Définir le thème tatouage au chargement de la page
+  useEffect(() => {
+    setUniverse('tatouage');
+  }, [setUniverse]);
 
   const tattooTypes = [
     {
@@ -70,12 +75,12 @@ export default function TattooPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <section className="relative pt-20 pb-16 overflow-hidden bg-black">
+        <div className="absolute inset-0 bg-black">
           <div 
-            className="absolute inset-0 opacity-20"
+            className="absolute inset-0 opacity-10"
             style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
             }}
           ></div>
         </div>
@@ -109,33 +114,30 @@ export default function TattooPage() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Button size="lg" className="px-8 py-4 text-lg">
+              <ThemedButton variant="primary" size="lg" className="px-8 py-4 text-lg">
                 Voir mes réalisations
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-white text-white hover:bg-white hover:text-gray-900">
+              </ThemedButton>
+              <ThemedButton variant="secondary" size="lg" className="px-8 py-4 text-lg">
                 Réserver une consultation
-              </Button>
+              </ThemedButton>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Navigation Tabs */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-8 bg-white border-b-2 border-black">
         <div className="container mx-auto px-4">
           <div className="flex justify-center">
-            <div className="bg-gray-100 rounded-lg p-1">
+            <div className="bg-gray-100 rounded-lg p-1 border-2 border-black">
               <button
                 onClick={() => setActiveTab('gallery')}
                 className={`px-8 py-3 rounded-md transition-all font-medium ${
                   activeTab === 'gallery' 
-                    ? 'text-white shadow-lg' 
-                    : 'text-gray-600 hover:text-gray-800'
+                    ? 'bg-black text-white shadow-lg' 
+                    : 'text-black hover:bg-gray-200'
                 }`}
-                style={{
-                  backgroundColor: activeTab === 'gallery' ? theme.primary : 'transparent'
-                }}
               >
                 Galerie
               </button>
@@ -143,12 +145,9 @@ export default function TattooPage() {
                 onClick={() => setActiveTab('booking')}
                 className={`px-8 py-3 rounded-md transition-all font-medium ${
                   activeTab === 'booking' 
-                    ? 'text-white shadow-lg' 
-                    : 'text-gray-600 hover:text-gray-800'
+                    ? 'bg-black text-white shadow-lg' 
+                    : 'text-black hover:bg-gray-200'
                 }`}
-                style={{
-                  backgroundColor: activeTab === 'booking' ? theme.primary : 'transparent'
-                }}
               >
                 Réserver
               </button>
@@ -184,14 +183,14 @@ export default function TattooPage() {
                     transition={{ duration: 0.6, delay: index * 0.2 }}
                     viewport={{ once: true }}
                   >
-                    <Card className="h-full hover:shadow-xl transition-shadow duration-300">
+                    <Card className="h-full hover:shadow-xl transition-shadow duration-300 bg-white border-2 border-black">
                       <CardHeader className="text-center pb-4">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4" style={{ color: theme.primary }}>
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-black text-white mb-4">
                           {type.icon}
                         </div>
-                        <h3 className="text-2xl font-bold mb-2">{type.name}</h3>
+                        <h3 className="text-2xl font-bold mb-2 text-black">{type.name}</h3>
                         <p className="text-gray-600 mb-4">{type.description}</p>
-                        <div className="text-2xl font-bold" style={{ color: theme.accent }}>
+                        <div className="text-2xl font-bold text-black">
                           {type.price}
                         </div>
                       </CardHeader>
@@ -210,7 +209,7 @@ export default function TattooPage() {
                             <ul className="space-y-1">
                               {type.features.map((feature, i) => (
                                 <li key={i} className="flex items-center text-gray-600">
-                                  <CheckCircle className="w-4 h-4 mr-2" style={{ color: theme.accent }} />
+                                  <CheckCircle className="w-4 h-4 mr-2 text-black" />
                                   {feature}
                                 </li>
                               ))}
@@ -285,10 +284,10 @@ export default function TattooPage() {
                     viewport={{ once: true }}
                     className="text-center"
                   >
-                    <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: theme.background }}>
-                      <span className="text-2xl font-bold" style={{ color: theme.primary }}>{step.step}</span>
+                    <div className="w-16 h-16 rounded-full bg-black text-white flex items-center justify-center mx-auto mb-4">
+                      <span className="text-2xl font-bold">{step.step}</span>
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900">{step.title}</h3>
+                    <h3 className="text-xl font-semibold mb-3 text-black">{step.title}</h3>
                     <p className="text-gray-600">{step.description}</p>
                   </motion.div>
                 ))}
@@ -313,7 +312,7 @@ export default function TattooPage() {
                 </p>
               </div>
 
-              <Card>
+              <Card className="bg-white border-2 border-black">
                 <CardContent className="p-8">
                   <form className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
@@ -403,9 +402,9 @@ export default function TattooPage() {
                       </div>
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full">
+                    <ThemedButton type="submit" variant="primary" size="lg" className="w-full">
                       Envoyer la demande
-                    </Button>
+                    </ThemedButton>
                   </form>
                 </CardContent>
               </Card>
@@ -421,31 +420,31 @@ export default function TattooPage() {
           viewport={{ once: true }}
           className="mt-20"
         >
-          <Card>
+          <Card className="bg-white border-2 border-black">
             <CardContent className="p-8">
-              <h2 className="text-3xl font-bold text-center mb-8 text-gray-900">
+              <h2 className="text-3xl font-bold text-center mb-8 text-black">
                 Informations Pratiques
               </h2>
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: theme.background }}>
-                    <Clock className="w-8 h-8" style={{ color: theme.accent }} />
+                  <div className="w-16 h-16 rounded-full bg-black text-white flex items-center justify-center mx-auto mb-4">
+                    <Clock className="w-8 h-8" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Horaires</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-black">Horaires</h3>
                   <p className="text-gray-600">Lun-Sam: 10h-19h</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: theme.background }}>
-                    <MapPin className="w-8 h-8" style={{ color: theme.accent }} />
+                  <div className="w-16 h-16 rounded-full bg-black text-white flex items-center justify-center mx-auto mb-4">
+                    <MapPin className="w-8 h-8" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Adresse</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-black">Adresse</h3>
                   <p className="text-gray-600">123 Rue de l&apos;Art<br />75000 Paris</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: theme.background }}>
-                    <Euro className="w-8 h-8" style={{ color: theme.accent }} />
+                  <div className="w-16 h-16 rounded-full bg-black text-white flex items-center justify-center mx-auto mb-4">
+                    <Euro className="w-8 h-8" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Paiement</h3>
+                  <h3 className="text-xl font-semibold mb-2 text-black">Paiement</h3>
                   <p className="text-gray-600">Espèces, CB, Virement</p>
                 </div>
               </div>
