@@ -75,52 +75,76 @@ export default function TattooPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-white">
-          <div 
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          ></div>
-        </div>
-
-        <div className="relative z-10 container mx-auto px-4">
+      <section className="relative pt-20 pb-20 bg-white">
+        <div className="container mx-auto px-6">
           <Breadcrumbs items={[{ name: 'Tatouages' }]} />
           
-          <div className="text-center max-w-4xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mt-16">
+            {/* Left Content */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="mb-8"
+              className="space-y-8"
             >
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-black">
-                🖤 Tatouages
+              <h1 className="text-6xl md:text-8xl font-black text-black leading-tight">
+                TATOUAGES
+                <br />
+                <span className="text-4xl md:text-5xl font-light">sur mesure</span>
               </h1>
-              <p className="text-xl md:text-2xl text-gray-800 mb-8">
-                Des créations uniques gravées à vie
+              
+              <p className="text-xl text-gray-800 leading-relaxed max-w-lg">
+                Des créations uniques gravées à vie. 
+                Chaque tatouage raconte une histoire.
               </p>
-              <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
-                Que ce soit un design flash ou une création sur mesure, 
-                chaque tatouage raconte une histoire. Laissez-moi transformer 
-                vos idées en œuvres d&apos;art permanentes.
-              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="border-2 border-black px-8 py-4 text-black font-medium hover:bg-black hover:text-white transition-all duration-200 flex items-center justify-center">
+                  Réserver maintenant
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </button>
+                <button className="text-black underline hover:no-underline transition-all duration-200">
+                  Comment ça marche ?
+                </button>
+              </div>
             </motion.div>
 
+            {/* Right Illustration */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
             >
-              <ThemedButton variant="primary" size="lg" className="px-8 py-4 text-lg">
-                Voir mes réalisations
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </ThemedButton>
-              <ThemedButton variant="secondary" size="lg" className="px-8 py-4 text-lg">
-                Réserver une consultation
-              </ThemedButton>
+              <div className="w-full h-96 bg-white border-2 border-black relative overflow-hidden">
+                {/* Illustration SVG en ligne noire */}
+                <svg viewBox="0 0 400 300" className="w-full h-full">
+                  {/* Personne avec tatouage */}
+                  <circle cx="200" cy="120" r="25" fill="none" stroke="black" strokeWidth="3"/>
+                  <path d="M 200 145 L 200 200" stroke="black" strokeWidth="3" fill="none"/>
+                  <path d="M 200 200 L 150 250" stroke="black" strokeWidth="3" fill="none"/>
+                  <path d="M 200 200 L 250 250" stroke="black" strokeWidth="3" fill="none"/>
+                  <path d="M 200 160 L 150 180" stroke="black" strokeWidth="3" fill="none"/>
+                  <path d="M 200 160 L 250 180" stroke="black" strokeWidth="3" fill="none"/>
+                  
+                  {/* Tatouage sur le bras */}
+                  <path d="M 150 180 Q 160 170 170 180 Q 160 190 150 180" stroke="black" strokeWidth="2" fill="none"/>
+                  
+                  {/* Outils de tatouage */}
+                  <rect x="100" y="200" width="40" height="8" fill="none" stroke="black" strokeWidth="2"/>
+                  <rect x="260" y="200" width="40" height="8" fill="none" stroke="black" strokeWidth="2"/>
+                  
+                  {/* Motifs décoratifs */}
+                  <circle cx="80" cy="80" r="15" fill="none" stroke="black" strokeWidth="2"/>
+                  <circle cx="320" cy="80" r="15" fill="none" stroke="black" strokeWidth="2"/>
+                  <circle cx="80" cy="220" r="15" fill="none" stroke="black" strokeWidth="2"/>
+                  <circle cx="320" cy="220" r="15" fill="none" stroke="black" strokeWidth="2"/>
+                </svg>
+              </div>
+              
+              {/* Cercles décoratifs */}
+              <div className="absolute -top-4 -right-4 w-8 h-8 border-2 border-black rounded-full"></div>
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 border-2 border-black rounded-full"></div>
             </motion.div>
           </div>
         </div>
@@ -164,133 +188,132 @@ export default function TattooPage() {
             transition={{ duration: 0.6 }}
           >
             {/* Types de tatouages */}
-            <section className="mb-20">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                  Mes Services
-                </h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  Choisissez le type de tatouage qui correspond à votre projet
-                </p>
-              </div>
+            <section className="mb-20 py-16">
+              <div className="container mx-auto px-6">
+                <div className="text-center mb-16">
+                  <h2 className="text-5xl md:text-6xl font-black text-black mb-6">
+                    MES SERVICES
+                  </h2>
+                  <div className="w-24 h-1 bg-black mx-auto"></div>
+                </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
-                {tattooTypes.map((type, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                    viewport={{ once: true }}
-                  >
-                    <Card className="h-full hover:shadow-xl transition-shadow duration-300 bg-white border-2 border-black">
-                      <CardHeader className="text-center pb-4">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-black text-white mb-4">
+                <div className="grid md:grid-cols-2 gap-12">
+                  {tattooTypes.map((type, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.2 }}
+                      viewport={{ once: true }}
+                      className="bg-white border-2 border-black p-8 hover:shadow-lg transition-shadow duration-300"
+                    >
+                      <div className="text-center mb-6">
+                        <div className="w-20 h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4">
                           {type.icon}
                         </div>
-                        <h3 className="text-2xl font-bold mb-2 text-black">{type.name}</h3>
-                        <p className="text-gray-600 mb-4">{type.description}</p>
-                        <div className="text-2xl font-bold text-black">
+                        <h3 className="text-3xl font-black text-black mb-3">{type.name}</h3>
+                        <p className="text-lg text-gray-800 mb-4">{type.description}</p>
+                        <div className="text-2xl font-bold text-black border-b-2 border-black pb-2 inline-block">
                           {type.price}
                         </div>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-4">
-                          <div>
-                            <h4 className="font-semibold mb-2">Exemples :</h4>
-                            <ul className="list-disc list-inside text-gray-600 space-y-1">
-                              {type.examples.map((example, i) => (
-                                <li key={i}>{example}</li>
-                              ))}
-                            </ul>
-                          </div>
-                          <div>
-                            <h4 className="font-semibold mb-2">Inclus :</h4>
-                            <ul className="space-y-1">
-                              {type.features.map((feature, i) => (
-                                <li key={i} className="flex items-center text-gray-600">
-                                  <CheckCircle className="w-4 h-4 mr-2 text-black" />
-                                  {feature}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                      </div>
+                      
+                      <div className="space-y-6">
+                        <div>
+                          <h4 className="font-bold text-black mb-3 text-lg">EXEMPLES</h4>
+                          <ul className="space-y-2">
+                            {type.examples.map((example, i) => (
+                              <li key={i} className="text-gray-800 flex items-center">
+                                <div className="w-2 h-2 bg-black rounded-full mr-3"></div>
+                                {example}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
+                        <div>
+                          <h4 className="font-bold text-black mb-3 text-lg">INCLUS</h4>
+                          <ul className="space-y-2">
+                            {type.features.map((feature, i) => (
+                              <li key={i} className="text-gray-800 flex items-center">
+                                <div className="w-2 h-2 bg-black rounded-full mr-3"></div>
+                                {feature}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </section>
 
             {/* Galerie */}
-            <section className="mb-20">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                  Mes Réalisations
-                </h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  Découvrez quelques-unes de mes créations récentes
-                </p>
-              </div>
+            <section className="mb-20 py-16 bg-gray-50">
+              <div className="container mx-auto px-6">
+                <div className="text-center mb-16">
+                  <h2 className="text-5xl md:text-6xl font-black text-black mb-6">
+                    MES RÉALISATIONS
+                  </h2>
+                  <div className="w-24 h-1 bg-black mx-auto"></div>
+                </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {galleryImages.map((image, index) => (
-                  <motion.div
-                    key={image.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="group cursor-pointer"
-                  >
-                    <div className="aspect-[3/4] rounded-lg overflow-hidden bg-gray-200 relative">
-                      <div 
-                        className="w-full h-full flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-                        style={{ backgroundColor: theme.background }}
-                      >
-                        <span className="text-gray-400 text-sm">Image {image.id}</span>
-                      </div>
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-end">
-                        <div className="p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <h3 className="font-semibold text-sm">{image.title}</h3>
-                          <p className="text-xs text-gray-300">{image.category}</p>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {galleryImages.map((image, index) => (
+                    <motion.div
+                      key={image.id}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="group cursor-pointer"
+                    >
+                      <div className="aspect-[3/4] bg-white border-2 border-black relative overflow-hidden">
+                        <div className="w-full h-full flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="w-16 h-16 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-4">
+                              <span className="text-2xl">🖤</span>
+                            </div>
+                            <p className="text-sm font-bold text-black">{image.title}</p>
+                            <p className="text-xs text-gray-600">{image.category}</p>
+                          </div>
                         </div>
+                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </section>
 
             {/* Processus */}
-            <section className="mb-20">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-                  Comment ça marche ?
-                </h2>
-                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                  Un processus simple et professionnel pour votre tatouage
-                </p>
-              </div>
+            <section className="mb-20 py-16">
+              <div className="container mx-auto px-6">
+                <div className="text-center mb-16">
+                  <h2 className="text-5xl md:text-6xl font-black text-black mb-6">
+                    COMMENT ÇA MARCHE ?
+                  </h2>
+                  <div className="w-24 h-1 bg-black mx-auto"></div>
+                </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {processSteps.map((step, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="text-center"
-                  >
-                    <div className="w-16 h-16 rounded-full bg-black text-white flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl font-bold">{step.step}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3 text-black">{step.title}</h3>
-                    <p className="text-gray-600">{step.description}</p>
-                  </motion.div>
-                ))}
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {processSteps.map((step, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="text-center"
+                    >
+                      <div className="w-20 h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-6 bg-white">
+                        <span className="text-2xl font-black text-black">{step.step}</span>
+                      </div>
+                      <h3 className="text-xl font-black mb-4 text-black">{step.title}</h3>
+                      <p className="text-gray-800 leading-relaxed">{step.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </section>
           </motion.div>
@@ -418,38 +441,40 @@ export default function TattooPage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mt-20"
+          className="py-16 bg-gray-50"
         >
-          <Card className="bg-white border-2 border-black">
-            <CardContent className="p-8">
-              <h2 className="text-3xl font-bold text-center mb-8 text-black">
-                Informations Pratiques
+          <div className="container mx-auto px-6">
+            <div className="bg-white border-2 border-black p-12">
+              <h2 className="text-5xl md:text-6xl font-black text-center mb-16 text-black">
+                INFORMATIONS PRATIQUES
               </h2>
-              <div className="grid md:grid-cols-3 gap-8">
+              <div className="w-24 h-1 bg-black mx-auto mb-16"></div>
+              
+              <div className="grid md:grid-cols-3 gap-12">
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-black text-white flex items-center justify-center mx-auto mb-4">
-                    <Clock className="w-8 h-8" />
+                  <div className="w-20 h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-6 bg-white">
+                    <Clock className="w-8 h-8 text-black" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Horaires</h3>
-                  <p className="text-gray-600">Lun-Sam: 10h-19h</p>
+                  <h3 className="text-2xl font-black mb-4 text-black">HORAIRES</h3>
+                  <p className="text-gray-800 text-lg">Lun-Sam: 10h-19h</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-black text-white flex items-center justify-center mx-auto mb-4">
-                    <MapPin className="w-8 h-8" />
+                  <div className="w-20 h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-6 bg-white">
+                    <MapPin className="w-8 h-8 text-black" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Adresse</h3>
-                  <p className="text-gray-600">123 Rue de l&apos;Art<br />75000 Paris</p>
+                  <h3 className="text-2xl font-black mb-4 text-black">ADRESSE</h3>
+                  <p className="text-gray-800 text-lg">123 Rue de l&apos;Art<br />75000 Paris</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-black text-white flex items-center justify-center mx-auto mb-4">
-                    <Euro className="w-8 h-8" />
+                  <div className="w-20 h-20 border-2 border-black rounded-full flex items-center justify-center mx-auto mb-6 bg-white">
+                    <Euro className="w-8 h-8 text-black" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Paiement</h3>
-                  <p className="text-gray-600">Espèces, CB, Virement</p>
+                  <h3 className="text-2xl font-black mb-4 text-black">PAIEMENT</h3>
+                  <p className="text-gray-800 text-lg">Espèces, CB, Virement</p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </motion.section>
       </main>
 
